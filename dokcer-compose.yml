@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tomcat-service:
+    image: 'tomcat:9'
+    ports:
+      - "8080:80"
+    volumes:
+      - "/mnt/wars:/usr/local/tomcat/webapps"
+
+  nginxserver:
+    image: nginx
+    ports:
+      - "8082:80"
