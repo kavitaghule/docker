@@ -1,0 +1,28 @@
+#prerequesits:
+#docker and docker compose install on m/c
+systemctl start docker 
+
+  docker info
+ # docker cmd for manually pull image         
+  docker ps/docker container ls                                                           //list the running container
+  docker pull  tomcat:9                                                                   //pull image from repo
+  docker images                                                                            // list the availabe images
+  docker images -q
+  docker run -itd {image-id}                                                             //run container from image
+# docker cmd for manually run container directly
+  docker run -itd  --name mytomcat -p 8080:8080 tomcat:9                               //expose port on hostPort:container_port in interactive and dittach mode 
+  docker rename old-name new-name                                                     //tagging contaner
+ docker ps -a / docker container ls -a                                              //list all stoped and started contaner in detail
+ docker exec -itd {container-id}                                                     // to go in same container
+docker attach  {container-id}                                                                 //do not use
+exit/ ctl+d                                                                             // exit frm container
+# docker cmd for manually run container directly
+docker container stop  {container-id}                                                     // stop runnind container
+docker container start  {container-id}                                                     // start stopped container
+docker container rm {container-id}                                                       // rm stopped container
+docker rmi {image-id}                                                                   // rm image
+
+
+
+
+  
