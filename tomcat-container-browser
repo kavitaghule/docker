@@ -1,3 +1,7 @@
+# docker needs alway sudo previliges
+sudo usermod -aG docker ec2-user
+source ..
+ctrl+d and again login
 #prerequesits:
 #docker and docker compose install on m/c
 systemctl start docker 
@@ -21,8 +25,10 @@ docker container stop  {container-id}                                           
 docker container start  {container-id}                                                     // start stopped container
 docker container rm {container-id}                                                       // rm stopped container
 docker rmi {image-id}                                                                   // rm image
-
-
+ # push image on docker registery
+docker login                                                                       //need to login 1st to push image
+docker push [OPTIONS] NAME[:TAG]   /docker push myRegistry.com/myImage:v1             //  push image on docker registry
+docker pull myRegistry.com/myImage:v1                                                //pull image on local
 
 
   
