@@ -1,3 +1,20 @@
+
+syntax:
+version:
+services:
+   db:
+    image:
+    port:
+    volumes:
+    environment:
+     networks:
+     depends_on:
+     links:
+      - app
+     build:
+      context: ./myapp
+      dockerfile: Dockerfile.dev
+
 version: '3'
 services:
   tomcat-service:
