@@ -1,0 +1,21 @@
+1} multi stage build :     //use less stages or use two from stage
+# First stage: Build the application
+FROM base-image as builder
+WORKDIR /app
+COPY . .
+RUN build-command                                                                                          //// multi-stage build, layer caching, smaller image
+
+# Second stage: Create the production image
+FROM another-base-image
+COPY --from=builder /app/compiled-artifact /app
+CMD ["run-command"]
+
+
+2} use smaller image :    // like apline image that is loess in size
+nginx:alpine
+ 3} use dictroless image     // does not have bash
+
+
+4} layer caching
+
+
