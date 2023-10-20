@@ -1,3 +1,15 @@
+type of docker volume ->
+Named Volumes: Named volumes are explicitly created and given a name. They are managed by Docker and are easy to
+reference by name when creating and running containers.
+
+Anonymous Volumes: Anonymous volumes are automatically created by Docker. They are not named and are typically used for 
+temporary or disposable data.
+
+Bind Mounts: Bind mounts allow you to mount a specific file or directory from the host machine into a container.
+They provide direct access to the host's file system.
+
+
+
 # manually create docker volume: 
 docker volume create mydata
 docker run -v mydata:/usr/local/webapps // tomcatcontainer // host:container
