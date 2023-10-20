@@ -29,6 +29,8 @@ docker rmi {image-id}                                                           
 docker login                                                                       //need to login 1st to push image
 docker push [OPTIONS] NAME[:TAG]   /docker push myRegistry.com/myImage:v1             //  push image on docker registry
 docker pull myRegistry.com/myImage:v1                                                //pull image on local
+# size of docker contaner 
+docker container ls -s / docker ps -s
 
 
   
