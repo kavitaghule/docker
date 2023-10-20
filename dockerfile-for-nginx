@@ -1,0 +1,22 @@
+# Stage 1: Build an image with OpenJDK and any necessary Java dependencies
+FROM openjdk:11 as java-builder
+
+# Stage 2: Build the final image with Nginx and copy Java from the previous stage
+FROM nginx:latest
+
+# Copy Java from the java-builder stage to the final image
+COPY --from=java-builder /usr/local/openjdk-11 /usr/local/openjdk-11
+
+# Set environment variables for Java
+ENV JAVA_HOME /usr/local/openjdk-11
+ENV PATH $PATH:$JAVA_HOME/bin
+
+# Your Nginx configurations and application setup can be added here
+# For simplicity, let's just create a basic index.html file
+RUN echo "Hello, Nginx with Java!" > /usr/share/nginx/html/index.html
+
+# Expose the default Nginx port
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
