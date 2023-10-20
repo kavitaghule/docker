@@ -1,0 +1,10 @@
+#centos image
+from centos:latest
+run yum install java -y
+run mkdir -p /opt/tomcat
+workdir  /opt/tomcat
+add url .
+run tar -xvzf apache
+run mv apache/* /opt/tomcat
+expose 8080:80
+cmd [ "/opt/tomcat/bin/catalina.sh" "run"] / cmd [ "catalina.sh" "run"]
