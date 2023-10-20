@@ -1,0 +1,19 @@
+# manually create docker volume: 
+docker volume create mydata
+docker run -v mydata:/usr/local/webapps // tomcatcontainer // host:container
+docker volume inspect mydata
+docker volume ls
+docker volume rm mydata
+  
+# run cmd on cli
+  docker run -d -p 80:80 -v /metadata:/usr/share/nginx/html nginx
+
+# in tomcat dockerfile
+FROM tomcat:latest
+# Create a volume at /usr/local/tomcat/webapps/myapp
+VOLUME /usr/local/tomcat/webapps/myapp
+# Optionally, copy your web application to the webapps directory
+COPY myapp.war /usr/local/tomcat/webapps/myapp.war
+CMD ["catalina.sh", "run"]
+docker build -t my-tomcat-image .
+docker run -d -p 8080:8080 -v /path/on/host:/usr/local/tomcat/webapps/myapp my-tomcat-image
