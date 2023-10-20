@@ -17,6 +17,5 @@ RUN echo "Hello, Nginx with Java!" > /usr/share/nginx/html/index.html
 
 # Expose the default Nginx port
 EXPOSE 80
-
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
