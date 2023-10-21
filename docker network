@@ -1,0 +1,4 @@
+docker network :
+by default docker uses bridge network
+cmds : docker network ls
+       dcoker inspect bridge
