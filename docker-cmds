@@ -1,0 +1,37 @@
+docker images                        //list no images
+docker images ls                     //list no images
+docker rmi {imagename}                 // remove one or more images
+docker ps                            //list all running container
+docker ps -a                         //list all running and stoped container
+docker contaneir ls                  //list all running container
+docker contaneir ls -a                //list all running and stoped container
+docker container run ubuntu cat /etc/os-release      // cat /etc/os-release  cmd run inside contaner and ther container get exited
+docker container run ubuntu sleep 30                 
+docker container run -d ubuntu sleep 30          //in detach mode
+docker run -it ubuntu /bin/bash                 //goes inside container -i=--interactive -t=--tty 
+ctrl+pq                                              // after goes inside container ctrl+pq press u can exit and container still run
+docker run -itd ubuntu /bin/bash      //bin/bash run cmd in contaner so we can use : like yum install
+
+
+docker container rm {contanerid} (1 2 3 ) no of contaner  //  docker container rm {c6883ehjjdd} // docker container rm c6
+docker rm {contanerid}
+docker container ls -aq              //list all contaner id
+docker container rm ${docker container ls -aq }                //rm all contaners
+docker container start  {contanerid}
+docker container restart  {contanerid}  
+docker container stop  {contanerid}
+docker container inspect {contanerid} //  docker container inspect {contanerid} | less                  //can debug by seeing logs
+docker container logs {contanerid} 
+docker container top {contanerid}       // show running process inside container
+docker container stats        //   show memory& cpu utiliztion inside container
+docker container run -d --name test -p 8080:80 {image name}       // port mapping/ access on browser by {hostip:port = 172.09.37.28:8080
+##netstat -tnlp              // shows all oprn ports
+docker container rename {contanerid} {newname} //docker container rename {oldname} {newname}     // rename container
+docker container attch {contanerid}   // attch mode active aste only
+docker container kill {contanerid}   // kill ronning container foecefully 
+docker container wait {contanerid}  //wait for stop container
+docker container pause {contanerid}
+docker container unpause {contanerid}
+docker container prune / docker container prune -f     // kill container 
+docker container port {contanerid}/name            // show only port of container
+ docker container create {contanerid}   
