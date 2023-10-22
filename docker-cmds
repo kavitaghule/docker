@@ -11,15 +11,13 @@ docker container run -d ubuntu sleep 30          //in detach mode
 docker run -it ubuntu /bin/bash                 //goes inside container -i=--interactive -t=--tty 
 ctrl+pq                                              // after goes inside container ctrl+pq press u can exit and container still run
 docker run -itd ubuntu /bin/bash      //bin/bash run cmd in contaner so we can use : like yum install
-
-
 docker container rm {contanerid} (1 2 3 ) no of contaner  //  docker container rm {c6883ehjjdd} // docker container rm c6
 docker rm {contanerid}
 docker container ls -aq              //list all contaner id
 docker container rm ${docker container ls -aq }                //rm all contaners
-docker container start  {contanerid}
-docker container restart  {contanerid}  
-docker container stop  {contanerid}
+docker container start  {contanerid}                       ////start all contaners
+docker container restart  {contanerid}                      //restart all contaners
+docker container stop  {contanerid}                       //stop container
 docker container inspect {contanerid} //  docker container inspect {contanerid} | less                  //can debug by seeing logs
 docker container logs {contanerid} 
 docker container top {contanerid}       // show running process inside container
@@ -34,4 +32,21 @@ docker container pause {contanerid}
 docker container unpause {contanerid}
 docker container prune / docker container prune -f     // kill container 
 docker container port {contanerid}/name            // show only port of container
- docker container create {contanerid}   
+docker container create {contanerid}              //only create container
+docker container diff {contanerid}                 // shows changes made in file system
+#watch 'docker container diff {contanerid}          // watch the running cmd
+docker container cp test {contanerid}:/tmp/
+docker container export {contanerid} >my_centos_git_java_tree.tar  // export comtainer in tarfile
+docker container export {contanerid} -o my_centos_git_java_tree.tar 
+docker container import  my_centos_git_java_tree.tar my_centos_t_g     //import as image so we havee run container frm image and all installation with present in that container
+
+
+
+
+
+
+
+
+
+
+
