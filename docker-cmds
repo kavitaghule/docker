@@ -99,11 +99,34 @@ can curl hostname of contaner also bydefault it is enabled// ping 289935b91402  
 docker run -itd --name test4 --network=host nginx    // port mapping not needed //only one host can create
 ## null/none 
 docker run -itd --name tes4 --network=none nginx      // if not req any network
+docker network connect test {containerid}   //connect to another network
+docker network disconnect test {containerid}     // disconnect from another network
+docker network rm host    /rm network
+docker network prune  // dlt unused network
+custom local repository for image push {insecure}
+docker run -d -p 5000:5000 --restart always --name registry registry:2  //http://locathost:5000/v2/_catalog access url
+docker image tag {image-id} repouserid/{image-name:tag} //docker image tag ff1857193a0b 3.109.155.21:5000/regitry:v1 
+ docker image push 3.109.155.21:5000/regitry
+ docker image pull 3.109.155.21:5000/regitry // without internet    //cant push/ pull from repo bec docker not allow insecure repo
+vi a.sh > { 
 
+}
 
+## docker compose //vi docker-copmpose.yml
+version: '3'                    //
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
 
-
-
+//////
+docker-compose up -d // docker-compose -f up -d //custom name
+docker-compose down
 
 
 
