@@ -1,3 +1,7 @@
+
+-p // expose port manually
+-P // expose default port randomly 
+
 dangling images: A dangling image is simply an unused image that's got no name and tag. You can easily spot dangling
 images when you run the docker images command because they show up as <none> <none> 509bc96b727d 2 months ago 55.3MB
 docker images                        //list no images
@@ -55,7 +59,6 @@ docker image inspect {imageid} | less
 docker image prune   // rm unused images
 
 
-
 #### dockerfile ####
 name must be dokcerfile/Dockerfile 
 if other then must have to specify in buld 
@@ -69,20 +72,23 @@ USER $name                                                 // after this all cmd
 ADD   http://tomcat.tar   //mnt/test  /mnt/project         
 COPY   /mnt/test /mnt/project                       //copy file from host:container
 EXPOSE   22 80 8080
-CMD   ["/usr/sbin/sshd","-D"]       //sshd start  //should have only one cmd in dockerfile   //execute cmd when container start
-      
-                                      //ssh kavita@containerip 
+CMD   ["/usr/sbin/sshd","-D"]       //sshd start  //should have only one cmd in dockerfile   //execute cmd when container start   
+                                     //ssh kavita@containerip 
 ENTRYPOINT   ["tree"]   ["--veeion"]    ["/tmp/test.sh"]                   //execute cmd when container start 
 
 docker build -t myubuntu:v1 .     // . means dockerfile is in present working dir            // biuld image from dockerfile
 docker build -t myubuntu:v1         /opt/tomcat/dockerfile 
-docker volume ls
-docker 
-
-
-
-
-
+docker volume create my-vol          //create volume on host
+docker volume ls                          // list volume
+1} volume mount:docker run -d --name mysql1 -v abc:/var/lib/mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql   create volume in host and  container
+ docker volume inspect abc       ///var/lib/docker/volumes/abc/_data                  //show log 
+2} docke bind mount                      //a file or directory on the host machine is mounted into a container. to keep data centralize shared lib
+ docker run -itd --name centos -v /opt/abc/wars:/mnt/       // have to provide full path otherwise it create volume mount                    
+docker volume rm my-vol                  //rm volume
+docker volume prune                      // rm unused volumes
+docker network ls                         // bydefault bridge network is activate
+docker network create -d bridge test //docker network create --driver bridge test     // create network
+docker run -itd --name centos1 --network test centos 
 
 
 
