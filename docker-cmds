@@ -40,12 +40,59 @@ docker container diff {contanerid}                 // shows changes made in file
 docker container cp test {contanerid}:/tmp/
 docker container export {contanerid} >my_centos_git_java_tree.tar  // export comtainer in tarfile
 docker container export {contanerid} -o my_centos_git_java_tree.tar 
+docker image save {imageid} > abc.tar    //same as export cmd
+docker image load {imageid} < abc.tar
+docker export= does not compress volume attch to image  vs docker save = if we didnot provide image tag then docker save will compress all images in tarfile
 docker container import  my_centos_git_java_tree.tar my_centos_t_g   //import as image so we havee run container frm image and all installation with present in that container
 docker login
 docker image tag {image-id} repouserid/{image-name:tag} 
 docker commit {contanerid} / docker commit --author "kavita"-m "1st image" {contanerid} name-image
 docker push repouserid/{image-name:tag} / docker push kavitaghule/{nginx:v1/latest/20.02}
 docker pull repouserid/{image-name:tag} / docker pull kavitaghule/{nginx:v1/latest/20.02}
+docker images ls --format '{{.ID}}, {{.Repository}}, {{.Tag}}'    //output shows id, repo, tag
+docker image history nginx        //shows image history
+docker image inspect {imageid} | less
+docker image prune   // rm unused images
+
+
+
+#### dockerfile ####
+name must be dokcerfile/Dockerfile 
+if other then must have to specify in buld 
+that layers may be in capital/ small but use in capital is best practice
+FROM ubuntu:16.04
+LABEL name-"kavita" && email="kavitagmail.com"
+ENV NAME kavita && PASS 123
+WORKDIR /tmp
+RUN pwd>/tmp/1.txt                                         // all shell cmds
+USER $name                                                 // after this all cmd run as user kavita
+ADD   http://tomcat.tar   //mnt/test  /mnt/project         
+COPY   /mnt/test /mnt/project                       //copy file from host:container
+EXPOSE   22 80 8080
+CMD   ["/usr/sbin/sshd","-D"]       //sshd start  //should have only one cmd in dockerfile   //execute cmd when container start
+      
+                                      //ssh kavita@containerip 
+ENTRYPOINT   ["tree"]   ["--veeion"]    ["/tmp/test.sh"]                   //execute cmd when container start 
+
+docker build -t myubuntu:v1 .     // . means dockerfile is in present working dir            // biuld image from dockerfile
+docker build -t myubuntu:v1         /opt/tomcat/dockerfile 
+docker volume ls
+docker 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
