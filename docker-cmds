@@ -86,12 +86,16 @@ docker volume ls                          // list volume
  docker run -itd --name centos -v /opt/abc/wars:/mnt/       // have to provide full path otherwise it create volume mount                    
 docker volume rm my-vol                  //rm volume
 docker volume prune                      // rm unused volumes
+### bridge network
 docker network ls                         // bydefault bridge network is activate
 docker network create -d bridge test //docker network create --driver bridge test     // create network
 docker run -itd --name centos1 --network test centos 
-
-
-
+when we create network then veth0 create on host(eth0) for each network
+if container are in same network then they can communicate easly {not req port mapping}   {nginx}curl containerip
+if container are in diff network {test} & {default} then communication we have to communicate with hostip:container_port 
+curl 192.38.73.28:37288 ///best practice use seperate network for each application
+can curl hostname of contaner also bydefault it is enabled// ping 289935b91402  only for same network
+docker run -itd --name test4 --network=host nginx 
 
 
 
