@@ -95,9 +95,10 @@ if container are in same network then they can communicate easly {not req port m
 if container are in diff network {test} & {default} then communication we have to communicate with hostip:container_port 
 curl 192.38.73.28:37288 ///best practice use seperate network for each application
 can curl hostname of contaner also bydefault it is enabled// ping 289935b91402  only for same network
-docker run -itd --name test4 --network=host nginx 
-
-
+## host
+docker run -itd --name test4 --network=host nginx    // port mapping not needed //only one host can create
+## null/none 
+docker run -itd --name tes4 --network=none nginx      // if not req any network
 
 
 
