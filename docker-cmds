@@ -119,15 +119,49 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
+ scale:
+    web: 3
   db:
     image: postgres:latest
     environment:
       POSTGRES_PASSWORD: mysecretpassword
 
+1:version: Defines the Docker Compose file format version. Common values are '3', '3.8', etc.
+2}services: Defines the services that make up your application. Each service can have the following options:
+image: Specifies the Docker image to use for the service.
+build:  to build image from dockerfile in current dir 
+ports: Exposes ports and maps them to the host.
+volumes: Mounts volumes from the host into the container.
+environment: Sets environment variables for the container.
+networks: Attaches the service to specified networks.
+depends_on: Specifies service dependencies.
+command: Overrides the default command for the container.
+entrypoint: Overrides the default entry point for the container.
+networks: Defines custom networks that services can connect to.
+
+3}configs: Defines configurations that can be used by services.
+4}secrets: Defines secrets that can be used by services.
+5}deploy: Specifies deployment options for services, especially when using Docker Swarm.
+6}scale: Scales the number of service replicas.
+
+
+
 //////
 docker-compose up -d // docker-compose -f up -d //custom name
-docker-compose down
-
+docker-compose down //docker-compose down -v   // to rm volume also
+docker-compose build my-service  //It's useful when you make changes to your Dockerfiles or build context.
+docker-compose ps --services   //List the running containers
+docker-compose logs -f  //Display the logs of the services defined in the docker-compose.yml file.
+docker-compose exec <service-name> <command> //docker-compose exec my-service sh// Run a command in a running container. 
+This is useful for executing one-off commands or debugging.
+docker-compose pull      //Pull images for services defined in the docker-compose.yml
+docker-compose restart my-service  // restart
+docker-compose up --scale my-service=3    //make no of replicas
+docker-compose config   //This command checks for syntax errors in the YAML file
+docker-compose version   //Display the Docker Compose version and the Compose file version
+docker-compose pause //Pause and unpause services to stop and resume their processes
+docker-compose unpause    //Pause and unpause services to stop and resume their processes
+docker-compose top   //Display the running processes of services as a table, including the process ID and related information.
 
 
 
