@@ -12,7 +12,8 @@ docker ps -a                         //list all running and stoped container
 docker contaneir ls                  //list all running container
 docker contaneir ls -a               //list all running and stoped container
 docker container run ubuntu cat /etc/os-release      // cat /etc/os-release  cmd run inside contaner and ther container get exited
-docker container run ubuntu sleep 30                 
+docker container run ubuntu sleep 30 
+docker exec -it mycontainer sh
 docker container run -d ubuntu sleep 30          //in detach mode
 docker run -it ubuntu /bin/bash                 //goes inside container -i=--interactive -t=--tty 
 ctrl+pq                                              // after goes inside container ctrl+pq press u can exit and container still run
